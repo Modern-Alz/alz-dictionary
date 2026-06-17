@@ -8,7 +8,7 @@
  * Tokens are stored in localStorage under 'alz_access' and 'alz_refresh'.
  */
 
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const BASE = import.meta.env.VITE_API_URL || 'https://alz-dictionary-production.up.railway.app';
 
 // ── Token helpers ─────────────────────────────────────────────────────────────
 export function getAccessToken()  { return localStorage.getItem('alz_access'); }
