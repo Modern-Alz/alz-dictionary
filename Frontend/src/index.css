@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 138, 160, 0.35);
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(143, 183, 228, 0.25);
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid #2F5D9F;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+.dark :focus-visible {
+  outline-color: #F0C75E;
+}
+
+/* Highlight sweep — "light up" effect under headwords */
+.sweep-text {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    currentColor 40%,
+    #F0C75E 50%,
+    currentColor 60%,
+    currentColor 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: sweep 2.4s linear infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Card surface helper */
+.card-surface {
+  background-color: theme('colors.surface.light');
+  border: 1px solid theme('colors.cream.300');
+}
+.dark .card-surface {
+  background-color: theme('colors.surface.dark');
+  border: 1px solid theme('colors.ink.800');
+}
+
+/* Multi-color spinning search glow ring */
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.search-ring-spin {
+  animation: ringRotate 4s linear infinite;
+}
+
+/* Smooth input glow transition helper */
+.input-glow-focus {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}

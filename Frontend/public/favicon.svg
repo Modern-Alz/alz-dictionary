@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 680 680" role="img">
+  <title>ALZ Dictionary</title>
+  <desc>ALZ Dictionary app icon — open book with a golden AI spark and navy background</desc>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap');
+      .lbl { font-family: 'Fraunces', Georgia, serif; }
+    </style>
+    <radialGradient id="bgGrad" cx="42%" cy="36%" r="72%">
+      <stop offset="0%"   stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#0B0F1A"/>
+    </radialGradient>
+    <radialGradient id="glowGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#F6E7B8"/>
+      <stop offset="60%"  stop-color="#E0BB54" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#C99A2E" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#8FB7E4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#2F5D9F"  stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pageLeft" cx="80%" cy="50%" r="80%">
+      <stop offset="0%"   stop-color="#F2EAD3"/>
+      <stop offset="100%" stop-color="#D8CBA9"/>
+    </radialGradient>
+    <radialGradient id="pageRight" cx="20%" cy="50%" r="80%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EEE6D2"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="sparkGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background card -->
+  <rect x="0" y="0" width="680" height="680" rx="128" fill="url(#bgGrad)"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="340" cy="310" rx="220" ry="170" fill="url(#glowBlue)"/>
+
+  <!-- Book shadow -->
+  <ellipse cx="340" cy="456" rx="170" ry="14" fill="#000000" opacity="0.28"/>
+
+  <!-- Left page -->
+  <path d="M192 220 C192 220 200 210 340 216 L340 440 C220 434 192 444 192 444 Z"
+        fill="url(#pageLeft)" opacity="0.97"/>
+
+  <!-- Right page -->
+  <path d="M340 216 C480 210 488 220 488 220 L488 444 C488 444 460 434 340 440 Z"
+        fill="url(#pageRight)" opacity="0.97"/>
+
+  <!-- Spine -->
+  <path d="M340 216 L340 440" stroke="#C9B99A" stroke-width="2.5" stroke-opacity="0.5" fill="none"/>
+
+  <!-- Left page lines -->
+  <line x1="216" y1="268" x2="324" y2="267" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.45"/>
+  <line x1="212" y1="288" x2="326" y2="287" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.35"/>
+  <line x1="210" y1="308" x2="328" y2="307" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.28"/>
+  <line x1="210" y1="328" x2="328" y2="327" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.22"/>
+  <line x1="210" y1="348" x2="328" y2="347" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.16"/>
+  <line x1="212" y1="368" x2="328" y2="367" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.12"/>
+  <line x1="215" y1="388" x2="328" y2="387" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.08"/>
+
+  <!-- Right page lines -->
+  <line x1="356" y1="267" x2="464" y2="268" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.45"/>
+  <line x1="354" y1="287" x2="468" y2="288" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.35"/>
+  <line x1="352" y1="307" x2="470" y2="308" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.28"/>
+  <line x1="352" y1="327" x2="470" y2="328" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.22"/>
+  <line x1="352" y1="347" x2="470" y2="348" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.16"/>
+  <line x1="354" y1="367" x2="468" y2="368" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.12"/>
+  <line x1="357" y1="387" x2="465" y2="388" stroke="#C9B99A" stroke-width="1.2" stroke-opacity="0.08"/>
+
+  <!-- Book bottom curve -->
+  <path d="M192 444 Q210 460 340 456 Q470 460 488 444"
+        stroke="#A08C6E" stroke-width="2" fill="none" stroke-opacity="0.6"/>
+
+  <!-- Gold spark halo -->
+  <circle cx="340" cy="158" r="52" fill="#E0BB54" opacity="0.14" filter="url(#softGlow)"/>
+  <circle cx="340" cy="158" r="36" fill="#E0BB54" opacity="0.20" filter="url(#sparkGlow)"/>
+
+  <!-- 4-point star -->
+  <g filter="url(#sparkGlow)">
+    <path d="M340 108 L349 149 L390 158 L349 167 L340 208 L331 167 L290 158 L331 149 Z"
+          fill="url(#glowGold)"/>
+  </g>
+  <circle cx="340" cy="158" r="10" fill="#FFFBE8" opacity="0.95"/>
+
+  <!-- Orbiting dots -->
+  <circle cx="302" cy="124" r="5"   fill="#F6E7B8" opacity="0.80"/>
+  <circle cx="378" cy="124" r="3.5" fill="#F6E7B8" opacity="0.65"/>
+  <circle cx="294" cy="172" r="3"   fill="#E0BB54" opacity="0.55"/>
+  <circle cx="388" cy="170" r="4.5" fill="#F6E7B8" opacity="0.70"/>
+
+  <!-- ALZ wordmark -->
+  <text x="340" y="544"
+        class="lbl"
+        font-family="Fraunces, Georgia, serif"
+        font-size="96"
+        font-weight="700"
+        text-anchor="middle"
+        fill="#F2EAD3"
+        letter-spacing="12"
+        opacity="0.97">ALZ</text>
+
+  <!-- Gold underline -->
+  <rect x="230" y="558" width="220" height="3" rx="1.5" fill="#E0BB54" opacity="0.80"/>
+
+  <!-- DICTIONARY tagline -->
+  <text x="340" y="600"
+        font-family="'Plus Jakarta Sans', system-ui, sans-serif"
+        font-size="22"
+        font-weight="400"
+        text-anchor="middle"
+        fill="#8FB7E4"
+        letter-spacing="5"
+        opacity="0.80">DICTIONARY</text>
+
+  <!-- Border edge -->
+  <rect x="0" y="0" width="680" height="680" rx="128"
+        fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.06"/>
+</svg>
