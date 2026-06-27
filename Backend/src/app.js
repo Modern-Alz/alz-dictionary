@@ -7,6 +7,8 @@ const rateLimit   = require('express-rate-limit');
 const { globalErrorHandler } = require('./middleware/errorHandler');
 
 const app = express();
+app.set('trust proxy', 1);
+
 
 // ── Security headers ─────────────────────────────────────────────────────────
 app.use(helmet());
