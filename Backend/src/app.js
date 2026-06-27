@@ -14,15 +14,35 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173')
-  .split(',')
-  .map((o) => o.trim());
+const PRODUCTION_ORIGINS = ['https://alz-dictionary.vercel.app'];
+
+function buildAllowedOrigins() {
+  const origins = new Set([
+    'http://localhost:5173',
+    ...PRODUCTION_ORIGINS,
+    ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL.trim()] : []),
+    ...(process.env.ALLOWED_ORIGINS || '')
+      .split(',')
+      .map((o) => o.trim())
+      .filter(Boolean),
+  ]);
+  return [...origins];
+}
+
+const allowedOrigins = buildAllowedOrigins();
+
+function isOriginAllowed(origin) {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  // Vercel preview deployments (e.g. alz-dictionary-git-main-user.vercel.app)
+  return /^https:\/\/[\w.-]+\.vercel\.app$/.test(origin);
+}
 
 app.use(cors({
   origin: (origin, cb) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
-    cb(new Error(`CORS: origin ${origin} not allowed`));
+    if (isOriginAllowed(origin)) return cb(null, true);
+    console.warn(`[CORS] Blocked origin: ${origin}`);
+    cb(null, false);
   },
   credentials: true,
 }));
@@ -77,6 +97,7 @@ const PORT = parseInt(process.env.PORT || '4000');
 app.listen(PORT, () => {
   console.log(`\n🚀  ALZ Dictionary API running on port ${PORT}`);
   console.log(`   ENV:       ${process.env.NODE_ENV || 'development'}`);
+  console.log(`   CORS:      ${allowedOrigins.join(', ')} (+ *.vercel.app previews)`);
   console.log(`   Health:    http://localhost:${PORT}/health\n`);
 });
 
