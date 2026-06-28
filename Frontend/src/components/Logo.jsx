@@ -8,15 +8,19 @@ export default function Logo({ size = 36, withText = true, className = '' }) {
     <div className={`flex items-center gap-2.5 ${className}`}>
       {/* Real app icon — matches the favicon / Play Store icon */}
       <img
-        src="/favicon.svg"
+        src="/favicon-48.png"
         alt="ALZ Dictionary logo"
         width={size}
         height={size}
         className="shrink-0 rounded-xl shadow-soft"
         onError={(e) => {
-          // Fallback: render initials if SVG fails to load
-          e.currentTarget.style.display = 'none';
-          e.currentTarget.nextSibling?.style.removeProperty('display');
+          if (e.currentTarget.src.includes('/favicon-48.png')) {
+            e.currentTarget.src = '/favicon.svg';
+            e.currentTarget.onerror = null;
+          } else {
+            e.currentTarget.style.display = 'none';
+            e.currentTarget.nextSibling?.style.removeProperty('display');
+          }
         }}
       />
       {/* Fallback initials badge (hidden unless SVG fails) */}

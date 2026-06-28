@@ -128,6 +128,51 @@ ${dictData.notFound ? 'NOTE: This word was NOT found in the dictionary API (may 
 Now rewrite this data in ALZ style following the JSON format exactly.`;
 }
 
+function buildFallbackResult(dictData) {
+  if (dictData.isPhrase) {
+    return {
+      type: 'phrase',
+      term: dictData.term,
+      category: 'phrase',
+      meaning: 'The phrase meaning is being prepared. Please try again in a moment for a fuller answer.',
+      usage: '',
+      examples: [],
+      origin: '',
+      translations: {},
+    };
+  }
+
+  return {
+    type: 'word',
+    term: dictData.term,
+    phonetic: dictData.phonetic || '',
+    audioUrl: dictData.audioUrl || '',
+    audioLang: 'en-US',
+    partsOfSpeech: dictData.partsOfSpeech || [],
+    definitions: (dictData.meanings || []).slice(0, 2).map((m) => ({
+      partOfSpeech: m.partOfSpeech || '',
+      meaning: m.definitions?.[0]?.definition || 'Meaning is being prepared right now.',
+      example: m.definitions?.[0]?.example || '',
+    })),
+    vocabulary: {
+      synonyms: (dictData.allSynonyms || []).slice(0, 5),
+      antonyms: (dictData.allAntonyms || []).slice(0, 3),
+      related: (dictData.related || []).slice(0, 3),
+      tip: 'The full AI rewrite is temporarily unavailable. Please try again in a moment.',
+    },
+    etymology: dictData.etymology || '',
+    translations: {
+      French: '',
+      Spanish: '',
+      Portuguese: '',
+      Yoruba: '',
+      Hausa: '',
+      Igbo: '',
+      'Nigerian Pidgin': '',
+    },
+  };
+}
+
 // ── Call OpenRouter ───────────────────────────────────────────────────────────
 
 async function rewriteWithAI(dictData) {
@@ -155,10 +200,12 @@ async function rewriteWithAI(dictData) {
           { role: 'user',   content: userMessage },
         ],
       }),
-      signal: AbortSignal.timeout(20000),
+      signal: AbortSignal.timeout(60000),
     });
   } catch (fetchErr) {
-    throw Object.assign(new Error("Can't reach ALZ AI. Check your internet connection."), { code: 'NETWORK_ERROR' });
+    const timedOut = fetchErr?.name === 'AbortError' || /timeout/i.test(fetchErr.message || '');
+    if (timedOut) return buildFallbackResult(dictData);
+    return buildFallbackResult(dictData);
   }
 
   if (!res.ok) {
@@ -166,15 +213,15 @@ async function rewriteWithAI(dictData) {
     const msg  = (body?.error?.message || '').toLowerCase();
 
     if (res.status === 402 || msg.includes('credit') || msg.includes('balance')) {
-      throw Object.assign(new Error('SERVICE_QUOTA'), { code: 'SERVICE_QUOTA' });
+      return buildFallbackResult(dictData);
     }
     if (res.status === 429 || msg.includes('rate limit')) {
-      throw Object.assign(new Error('Too many requests. Please wait a moment.'), { code: 'RATE_LIMIT' });
+      return buildFallbackResult(dictData);
     }
     if (res.status === 401) {
-      throw Object.assign(new Error('Service configuration error.'), { code: 'SERVICE_ERROR' });
+      return buildFallbackResult(dictData);
     }
-    throw Object.assign(new Error('AI service unavailable. Please try again.'), { code: 'SERVICE_ERROR' });
+    return buildFallbackResult(dictData);
   }
 
   const data = await res.json();
@@ -218,4 +265,4 @@ async function rewriteWithAI(dictData) {
   return parsed;
 }
 
-module.exports = { rewriteWithAI, buildUserMessage };
+module.exports = { rewriteWithAI, buildUserMessage, buildFallbackResult };
