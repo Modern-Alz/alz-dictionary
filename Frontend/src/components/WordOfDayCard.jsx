@@ -8,7 +8,7 @@ export default function WordOfDayCard({ word, onExplore }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="card-surface relative overflow-hidden rounded-3xl p-5 shadow-card dark:shadow-card-dark sm:p-6"
+      className="card-surface relative overflow-hidden rounded-3xl p-4 shadow-card dark:shadow-card-dark sm:p-6"
     >
       <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gilt-300/30 blur-2xl dark:bg-azure-400/20" />
 
@@ -19,7 +19,7 @@ export default function WordOfDayCard({ word, onExplore }) {
 
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="font-display text-2xl font-semibold capitalize text-ink-700 dark:text-ink-50 sm:text-3xl">
+          <h3 className="font-display text-xl font-semibold capitalize text-ink-700 dark:text-ink-50 sm:text-3xl">
             {word.term}
           </h3>
           <p className="font-mono text-sm text-ink-300">{word.phonetic}</p>
@@ -29,7 +29,7 @@ export default function WordOfDayCard({ word, onExplore }) {
             type="button"
             onClick={() => speak(word.term, 'en-US')}
             aria-label={`Hear pronunciation of ${word.term}`}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cream-300 bg-cream-50 text-azure-500 shadow-soft transition-all hover:shadow-glow-blue dark:border-ink-800 dark:bg-surface-darkAlt dark:text-gilt-300 dark:hover:shadow-glow-gold"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cream-300 bg-cream-50 text-azure-500 shadow-soft transition-all hover:shadow-glow-blue dark:border-ink-800 dark:bg-surface-darkAlt dark:text-gilt-300 dark:hover:shadow-glow-gold sm:h-10 sm:w-10"
           >
             <Volume2 size={18} />
           </button>

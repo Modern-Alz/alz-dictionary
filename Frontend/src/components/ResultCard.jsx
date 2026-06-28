@@ -110,15 +110,15 @@ export default function ResultCard({ result, saved, onToggleSave, index = 0 }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="card-surface w-full rounded-3xl p-5 shadow-card transition-shadow hover:shadow-lifted dark:shadow-card-dark dark:hover:shadow-lifted-dark sm:p-7"
+      className="card-surface w-full rounded-3xl p-4 shadow-card transition-shadow hover:shadow-lifted dark:shadow-card-dark dark:hover:shadow-lifted-dark sm:p-7"
     >
       {/* Header */}
-      <header className="mb-5 flex items-start justify-between gap-3">
+      <header className="mb-4 flex items-start justify-between gap-2 sm:mb-5 sm:gap-3">
         <div>
           <div className="mb-1 flex flex-wrap items-center gap-2">
             <h2
               key={result.term}
-              className="font-display text-2xl font-semibold capitalize text-ink-700 dark:text-ink-50 sm:text-3xl animate-fade-up"
+              className="font-display text-xl font-semibold capitalize text-ink-700 dark:text-ink-50 sm:text-3xl animate-fade-up"
             >
               {result.term}
             </h2>
@@ -142,7 +142,7 @@ export default function ResultCard({ result, saved, onToggleSave, index = 0 }) {
               type="button"
               onClick={() => speak(result.term, result.audioLang || 'en-US')}
               aria-label={`Hear pronunciation of ${result.term}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-cream-300 bg-cream-50 text-azure-500 shadow-soft transition-all hover:shadow-glow-blue dark:border-ink-800 dark:bg-surface-darkAlt dark:text-gilt-300 dark:hover:shadow-glow-gold"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-cream-300 bg-cream-50 text-azure-500 shadow-soft transition-all hover:shadow-glow-blue dark:border-ink-800 dark:bg-surface-darkAlt dark:text-gilt-300 dark:hover:shadow-glow-gold sm:h-10 sm:w-10"
             >
               <Volume2 size={18} />
             </button>
@@ -165,14 +165,14 @@ export default function ResultCard({ result, saved, onToggleSave, index = 0 }) {
           {!!result.definitions?.length && (
             <div>
               <SectionLabel icon={BookOpen}>Definitions</SectionLabel>
-              <ol className="space-y-3">
+              <ol className="space-y-2 sm:space-y-3">
                 {result.definitions.map((d, i) => (
                   <motion.li
                     key={i}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.08 }}
-                    className="rounded-2xl border border-cream-300 bg-cream-50/60 p-3.5 dark:border-ink-800 dark:bg-surface-darkAlt/60"
+                    className="rounded-2xl border border-cream-300 bg-cream-50/60 p-3 dark:border-ink-800 dark:bg-surface-darkAlt/60 sm:p-3.5"
                   >
                     <div className="mb-1 flex items-center gap-2">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-azure-500 text-[11px] font-bold text-cream-50 dark:bg-gilt-400 dark:text-ink-900">

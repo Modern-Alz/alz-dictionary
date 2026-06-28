@@ -202,14 +202,14 @@ export default function Home() {
     : 'ALZ is thinking…';
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4 sm:gap-6">
 
       {/* Welcome */}
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-ink-700 dark:text-ink-50 sm:text-4xl">
+        <h1 className="font-display text-2xl font-semibold tracking-tight text-ink-700 dark:text-ink-50 sm:text-3xl lg:text-4xl">
           Hello, <span className="sweep-text">{firstName}</span> 👋
         </h1>
-        <p className="mt-1 text-sm text-ink-300">
+        <p className="mt-1 text-xs text-ink-300 sm:text-sm">
           {userIsPremium ? "You're on Premium — unlimited searches, no ads." : 'What word would you like to explore today?'}
         </p>
         {userIsPremium && (
@@ -226,9 +226,9 @@ export default function Home() {
         <div className="relative z-10 overflow-hidden rounded-[24px] border border-cream-300 bg-cream-50 shadow-[0_8px_32px_rgba(30,42,56,0.10)] transition-all duration-300 dark:border-ink-800 dark:bg-surface-dark">
 
           {/* Input row */}
-          <div className="flex items-center gap-3 px-5 py-5 sm:py-6">
-            <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${ringActive ? 'bg-azure-500 text-cream-50 dark:bg-gilt-400 dark:text-ink-900' : 'bg-cream-200 text-ink-300 dark:bg-ink-800'}`}>
-              <Search size={19} />
+          <div className="flex items-center gap-2 px-3 py-3 sm:gap-3 sm:px-5 sm:py-5">
+            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors sm:h-10 sm:w-10 ${ringActive ? 'bg-azure-500 text-cream-50 dark:bg-gilt-400 dark:text-ink-900' : 'bg-cream-200 text-ink-300 dark:bg-ink-800'}`}>
+              <Search size={17} className="sm:h-[19px] sm:w-[19px]" />
             </div>
             <input
               ref={inputRef}
@@ -240,25 +240,25 @@ export default function Home() {
               onKeyDown={handleKeyDown}
               placeholder="Search a word or phrase…"
               aria-label="Search dictionary"
-              className="flex-1 bg-transparent text-base font-medium text-ink-700 outline-none placeholder:font-normal placeholder:text-ink-200 dark:text-ink-50 sm:text-lg"
+              className="flex-1 bg-transparent text-sm font-medium text-ink-700 outline-none placeholder:font-normal placeholder:text-ink-200 dark:text-ink-50 sm:text-base"
             />
             {query && (
               <button type="button" onClick={() => { setQuery(''); setResult(null); setError(''); inputRef.current?.focus(); }}
-                aria-label="Clear" className="shrink-0 rounded-full p-1.5 text-ink-300 hover:bg-cream-200 hover:text-ink-500 dark:hover:bg-ink-800">
+                aria-label="Clear" className="shrink-0 rounded-full p-1 text-ink-300 hover:bg-cream-200 hover:text-ink-500 dark:hover:bg-ink-800 sm:p-1.5">
                 <X size={16} />
               </button>
             )}
             <button type="button" onClick={toggleMic}
               aria-label={listening ? 'Stop voice' : 'Voice search'} aria-pressed={listening}
-              className={`shrink-0 rounded-full p-2 transition-all ${listening ? 'animate-pulse bg-red-100 text-red-500 dark:bg-red-900/30' : 'text-ink-300 hover:bg-cream-200 hover:text-azure-500 dark:hover:bg-ink-800 dark:hover:text-gilt-300'}`}>
+              className={`shrink-0 rounded-full p-1.5 transition-all sm:p-2 ${listening ? 'animate-pulse bg-red-100 text-red-500 dark:bg-red-900/30' : 'text-ink-300 hover:bg-cream-200 hover:text-azure-500 dark:hover:bg-ink-800 dark:hover:text-gilt-300'}`}>
               {listening ? <MicOff size={19} /> : <Mic size={19} />}
             </button>
           </div>
 
           {/* Search button */}
-          <div className="border-t border-cream-200 px-5 py-3.5 dark:border-ink-800">
+          <div className="border-t border-cream-200 px-3 py-2.5 dark:border-ink-800 sm:px-5 sm:py-3.5">
             <button type="button" onClick={() => runSearch()} disabled={!query.trim() || loading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-azure-500 py-3 text-sm font-semibold text-cream-50 shadow-glow-blue transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 dark:bg-gilt-400 dark:text-ink-900 dark:shadow-glow-gold">
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-azure-500 py-2.5 text-sm font-semibold text-cream-50 shadow-glow-blue transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 dark:bg-gilt-400 dark:text-ink-900 dark:shadow-glow-gold sm:py-3">
               <Search size={16} />
               {loading ? loadingLabel : 'Search ALZ Dictionary'}
             </button>
@@ -291,7 +291,7 @@ export default function Home() {
 
       {/* Suggestion chips */}
       {!hasResult && !loading && !error && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }} className="flex flex-wrap gap-2">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }} className="flex flex-wrap gap-1.5 sm:gap-2">
           {SUGGESTIONS.map((s, i) => (
             <SuggestionChip key={s.label} {...s} index={i} onClick={() => { setQuery(s.query); runSearch(s.query); }} />
           ))}
@@ -302,7 +302,7 @@ export default function Home() {
       <AnimatePresence>
         {loading && (
           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="flex flex-col items-center gap-4 py-10">
+            className="flex flex-col items-center gap-3 py-6 sm:gap-4 sm:py-10">
             <GlowOrb size={72} busy />
             <ThinkingDots label={loadingLabel} />
           </motion.div>
