@@ -1,7 +1,7 @@
 /**
  * ALZ Dictionary — Logo component
- * Shows the real app icon (favicon.svg) + "ALZ Dictionary" wordmark side by side.
- * The icon is the same navy/gold book+spark SVG used everywhere.
+ * Shows the real app icon (icon-128.png) + "ALZ Dictionary" wordmark side by side.
+ * The icon is the same navy/gold book+spark PNG used everywhere.
  */
 export default function Logo({ size = 36, withText = true, className = '' }) {
   return (
