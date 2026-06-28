@@ -16,14 +16,16 @@ function GlowField({ icon: Icon, label, id, ...props }) {
           {label}
         </label>
       )}
-<<<<<<< HEAD
-      <div className={`flex items-center gap-3 rounded-2xl border bg-cream-50 px-4 py-3.5 transition-all duration-300 dark:bg-surface-darkAlt ${
-        focused
-          ? 'border-azure-400 shadow-[0_0_0_3px_rgba(47,93,159,0.18),0_0_18px_rgba(47,93,159,0.22)] dark:border-gilt-400 dark:shadow-[0_0_0_3px_rgba(240,199,94,0.18),0_0_18px_rgba(240,199,94,0.22)]'
-          : 'border-cream-300 dark:border-ink-800'
-      }`}>
-        {Icon && <Icon size={18} className={`shrink-0 transition-colors ${focused ? 'text-azure-500 dark:text-gilt-300' : 'text-ink-300'}`} />}
-
+      <div
+        className={`flex items-center gap-3 rounded-2xl border bg-cream-50 px-4 py-3.5 transition-all duration-300 dark:bg-surface-darkAlt ${
+          focused
+            ? 'border-azure-400 shadow-[0_0_0_3px_rgba(47,93,159,0.18),0_0_18px_rgba(47,93,159,0.22)] dark:border-gilt-400 dark:shadow-[0_0_0_3px_rgba(240,199,94,0.18),0_0_18px_rgba(240,199,94,0.22)]'
+            : 'border-cream-300 dark:border-ink-800'
+        }`}
+      >
+        {Icon && (
+          <Icon size={18} className={`shrink-0 transition-colors ${focused ? 'text-azure-500 dark:text-gilt-300' : 'text-ink-300'}`} />
+        )}
         <input
           id={id}
           onFocus={() => setFocused(true)}
@@ -138,4 +140,5 @@ export default function Login() {
       </motion.div>
     </div>
   );
+
 }
