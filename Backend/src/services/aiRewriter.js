@@ -231,7 +231,7 @@ async function rewriteWithAI(dictData) {
   }
 
   const raw     = data?.choices?.[0]?.message?.content || '';
-  const cleaned = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+  const cleaned = raw.replace(/```json/gi, '').replace(/```/g, '').replace(/<pad>/gi, '').trim();
 
   let parsed = null;
   try {
@@ -245,11 +245,12 @@ async function rewriteWithAI(dictData) {
 
   if (!parsed?.type) {
     // Graceful fallback — something came back but wasn't valid JSON
+    const fallbackText = raw.replace(/<pad>/gi, '').trim();
     parsed = {
       type:     'phrase',
       term:     dictData.term,
       category: 'phrase',
-      meaning:  raw || 'No answer received. Please try again.',
+      meaning:  fallbackText || 'No answer received. Please try again.',
       usage:    '',
       examples: [],
       origin:   '',
