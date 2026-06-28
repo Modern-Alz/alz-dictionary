@@ -194,7 +194,7 @@ async function rewriteWithAI(dictData) {
       body: JSON.stringify({
         model,
         temperature: 0.25,   // low = more faithful to source data
-        max_tokens:  1400,
+        max_tokens:  2000,
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
           { role: 'user',   content: userMessage },
