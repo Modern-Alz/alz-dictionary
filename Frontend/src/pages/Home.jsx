@@ -103,7 +103,7 @@ export default function Home() {
   const [showHistory,   setShowHistory]   = useState(false);
   const [listening,     setListening]     = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
-  const [quota,         setQuota]         = useState({ used: 0, limit: 10, isPremium: false });
+  const [quota,         setQuota]         = useState({ used: 0, limit: 5, isPremium: false });
   const [premiumOpen,   setPremiumOpen]   = useState(false);
   // Pipeline status — shows the user what's happening
   const [pipelineStep,  setPipelineStep]  = useState(''); // 'dictionary' | 'ai' | ''

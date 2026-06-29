@@ -18,7 +18,7 @@ export const APP_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY || '';
 export const APP_MODEL   = import.meta.env.VITE_OPENROUTER_MODEL   || 'meta-llama/llama-3.1-8b-instruct:free';
 
 // Free tier: max daily searches before showing "try again later / go premium"
-export const FREE_DAILY_LIMIT = 10;
+export const FREE_DAILY_LIMIT = 5;
 
 // Premium price in Naira (₦) — $7 converted at ~1,600 ₦/$
 export const PREMIUM_PRICE_NGN = 11200;

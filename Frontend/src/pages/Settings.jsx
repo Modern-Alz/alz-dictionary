@@ -94,7 +94,7 @@ export default function Settings() {
             <div className="flex items-center justify-between px-4 py-4">
               <div>
                 <p className="text-sm font-semibold text-ink-700 dark:text-ink-50">Free plan</p>
-                <p className="text-xs text-ink-300">10 searches per day · Ads shown</p>
+                <p className="text-xs text-ink-300">5 searches per day · Ads shown</p>
               </div>
               <button
                 type="button"

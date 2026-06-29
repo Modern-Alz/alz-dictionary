@@ -13,7 +13,7 @@ const pool                = require('../db/pool');
 const { fetchDictionaryData } = require('../services/dictionaryFetcher');
 const { rewriteWithAI }   = require('../services/aiRewriter');
 
-const FREE_DAILY_LIMIT = parseInt(process.env.FREE_DAILY_LIMIT || '10');
+const FREE_DAILY_LIMIT = parseInt(process.env.FREE_DAILY_LIMIT || '5');
 
 function isPremium(user) {
   return user.plan === 'premium' && user.premiumUntil && new Date(user.premiumUntil) > new Date();

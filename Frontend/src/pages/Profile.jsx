@@ -141,7 +141,7 @@ export default function Profile() {
           <div className="flex items-center justify-between rounded-2xl border border-cream-300 bg-cream-100/60 p-4 dark:border-ink-800 dark:bg-surface-darkAlt/60">
             <div>
               <p className="text-sm font-medium text-ink-700 dark:text-ink-50">Free plan</p>
-              <p className="text-xs text-ink-300">10 searches/day · Ads shown</p>
+              <p className="text-xs text-ink-300">5 searches/day · Ads shown</p>
             </div>
             <button type="button" onClick={handleUpgrade} disabled={upgrading}
               className="inline-flex items-center gap-1.5 rounded-full bg-gilt-400 px-3.5 py-2 text-xs font-semibold text-ink-900 shadow-glow-gold transition-transform hover:scale-105 disabled:opacity-60">

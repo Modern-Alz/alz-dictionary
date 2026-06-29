@@ -30,7 +30,7 @@ Last updated: ${new Date().toLocaleDateString('en-NG', { day: 'numeric', month: 
 By creating an account or using ALZ Dictionary, you agree to these terms. If you do not agree, please do not use the app.
 
 2. Free & Premium Plans
-Free users receive up to 10 AI-powered searches per day. Premium users get unlimited searches and an ad-free experience for ₦11,200/month (approximately $7). Subscriptions renew monthly until cancelled.
+Free users receive up to 5 AI-powered searches per day. Premium users get unlimited searches and an ad-free experience for ₦11,200/month (approximately $7). Subscriptions renew monthly until cancelled.
 
 3. Acceptable Use
 ALZ Dictionary is for personal, educational use. You must not use it to generate harmful, misleading, or illegal content. We reserve the right to suspend accounts that misuse the service.
